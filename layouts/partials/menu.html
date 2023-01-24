@@ -3,11 +3,7 @@
     {{ if or $.Site.Params.showMenuItems ( eq .Site.Params.showMenuItems 0 ) }}
       {{ range first $.Site.Params.showMenuItems $.Site.Menus.main }}
         {{ if not .HasChildren }}
-          {{ if eq .Name "GitHub" }}
-            <li><a href="{{ .URL }}" target="_blank">{{ .Name }}</a></li>
-          {{ else }}
-            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-          {{ end }}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
         {{ end }}
       {{ end }}
       {{ if gt (len $.Site.Menus.main) $.Site.Params.showMenuItems }}
@@ -29,7 +25,11 @@
     {{ else }}
       {{ range $.Site.Menus.main }}
         {{ if not .HasChildren }}
+          {{ if eq .Name "GitHub" }}
+            <li><a href="{{ .URL }}" target="_blank">{{ .Name }}</a></li>
+          {{ else }}
           <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
         {{ end }}
       {{ end }}
     {{ end }}
